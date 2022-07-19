@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Камень, ножницы, бумага</title>
+</head>
+<body>
+<script language="Javascript">
+	let answer = confirm('Готовы сыграть?');
+	if (answer == false) document.write('Ну, бывай тогда!');
+	else{
+		let bot_count = 0;
+		let user_count = 0;
+		let name = prompt('Как Вас зовут?', 'Введите имя');
+		while(answer == true){
+			let bot_move = Math.round(Math.random() * 2);
+			let string_bot_move = (bot_move == 0) ? "камень" : (bot_move == 1) ? "ножницы" : "бумага";
+			let string_user_move = prompt("Ваш ход...", "например, бумага");
+			let message = `Я выбрал "${string_bot_move}". `;
+			if (bot_move == 0){
+					if (string_user_move.toLowerCase() == "камень") alert(message + 'Ничья.');
+					else if (string_user_move.toLowerCase() == 'ножницы'){
+						alert(message + 'Вы проиграли.');
+						bot_count++;
+					}
+					else if (string_user_move.toLowerCase() == 'бумага'){
+						alert(message + 'Вы выиграли.');
+						user_count++;
+					}
+					else alert('Ввод некорректен. Попробуйте снова.');
+			}
+			else if (bot_move == 1){
+					if (string_user_move.toLowerCase() == "камень"){
+						alert(message + 'Вы выиграли.');
+						user_count++;
+					}
+					else if (string_user_move.toLowerCase() == 'ножницы') alert(message + 'Ничья.');
+					else if (string_user_move.toLowerCase() == 'бумага'){
+						alert(message + 'Вы проиграли.');
+						bot_count++;
+					}
+					else alert('Ввод некорректен. Попробуйте снова.');
+			}
+			else{
+					if (string_user_move.toLowerCase() == "камень"){
+						alert(message + 'Вы проиграли.');
+						bot_count++;
+					}
+					else if (string_user_move.toLowerCase() == 'ножницы'){
+						alert(message + 'Вы выиграли.');
+						user_count++;
+					}
+					else if (string_user_move.toLowerCase() == 'бумага') alert(message + 'Ничья.');
+					else alert('Ввод некорректен. Попробуйте снова.');
+			}
+			alert(`Счёт. Бот ${bot_count} : ${name} ${user_count}`)
+			answer = confirm('Сыграем ещё разок?');
+			if (answer == false) document.write('Ну, бывай тогда!');
+			}
+		}
+</script>
+</body>
+</html>
